@@ -13,3 +13,11 @@
         <td>{{correo.titulo}}</td>
     </tr>
 </table>
+
+<h2>Estado de la lectura del correo 1:</h2>
+<h3 *ngIf="correos[0].leido">Sí</h3>
+<h3 *ngIf="!correos[0].leido">No</h3>
+
+<h2>Estado de la lectura del correo 2:</h2>
+<h3 *ngIf="correos[1].leido">Sí</h3>
+<h3 *ngIf="!correos[1].leido">No</h3>
