@@ -5,18 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CorreoComponent } from './Components/correo/correo.component';
 import { ListaCorreosComponent } from './Components/lista-correos/lista-correos.component';
-import { FormsModule } from '@angular/forms';
+import { FormCorreoComponent } from './Components/form-correo/form-correo.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     CorreoComponent,
-    ListaCorreosComponent
+    ListaCorreosComponent,
+    FormCorreoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
