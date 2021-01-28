@@ -12,9 +12,9 @@
         <td>{{correo.emisor}}</td>
         <td>{{correo.titulo}}</td>
         <td>
-            <button>Responder</button>
+            <button (click)="responder = !responder">Responder</button>
         </td>
     </tr>
 </table>
 
-<app-nuevo-correo></app-nuevo-correo>
+<app-nuevo-correo *ngIf="responder"></app-nuevo-correo>
