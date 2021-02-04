@@ -11,7 +11,7 @@ export class AvisosComponent implements OnInit {
 mensaje: string;
 visible: boolean;
 
-  constructor(private servicioAvisos: AvisosService) {
+  constructor(public servicioAvisos: AvisosService) {
     
    }
 

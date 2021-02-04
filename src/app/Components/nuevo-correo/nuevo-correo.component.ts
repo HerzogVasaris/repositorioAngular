@@ -47,13 +47,18 @@ export class NuevoCorreoComponent implements OnInit {
 
         
         this.onReset();
-        this.servicioAvisos.showMessage("Correo Enviado");
+        this.servicioAvisos.showMessage(`Correo enviado a ${correo.emisor}`);
     }
 
     onReset() {
         this.submitted = false;
         this.nuevoCorreo.reset();
         this.accionRealizada.emit();
+    }
+
+    cancel(){
+      this.onReset();
+      this.servicioAvisos.showMessage("Envio cancelado");
     }
 
 }
