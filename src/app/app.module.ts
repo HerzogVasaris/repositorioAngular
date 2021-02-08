@@ -1,4 +1,3 @@
-  
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +18,7 @@ import {
 } from "ng-gapi";
 
 let gapiClientConfig: NgGapiClientConfig = {
-  client_id: "395684135333-7cs6mldgfgr2q531bu51el0j4hdosv0s.apps.googleusercontent.com",
+  client_id: "397789697335-o35cfueni5kd9437pcjtf3u4gcth24d5.apps.googleusercontent.com",
   discoveryDocs: ["https://analyticsreporting.googleapis.com/$discovery/rest?version=v4"],
   ux_mode: "popup",
   redirect_uri: "http://localhost:4200/loged",
@@ -54,6 +53,7 @@ let gapiClientConfig: NgGapiClientConfig = {
     }),
   ],
   providers: [],
+  // exports: [GoogleApiModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

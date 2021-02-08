@@ -1,19 +1,20 @@
 import { Injectable, NgZone } from "@angular/core";
 import * as _ from "lodash";
-import { GoogleAuthService } from "ng-gapi/lib/GoogleAuthService";
+import { GoogleAuthService } from "ng-gapi";
 import GoogleUser = gapi.auth2.GoogleUser;
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  public static readonly SESSION_STORAGE_KEY: string = "accessToken";
 
-  public static readonly SESSION_STORAGE_KEY: string = "usuarioGoogle";
   profile: any = undefined;
   tokenUser: string;
   userId: string;
+  user: GoogleUser;
 
-  constructor(private googleAuthService: GoogleAuthService, private ngZone: NgZone) { 
+  constructor(public googleAuthService: GoogleAuthService, private ngZone: NgZone) { 
     if(this.isUserSignedIn()){
       this.setUser(this.getSessionUser());
     }
@@ -21,13 +22,11 @@ export class LoginService {
 
   private setUser(user: any){
     this.profile = user['w3'];
-    this.tokenUser = user['Zi'].access_token;
-    this.userId = this.profile['Eea'];
+    this.tokenUser = user['Zi'];
+    this.userId = user['Eea'];
   }
 
-
-
-  private getSessionUser(): GoogleUser {
+  public getSessionUser(): GoogleUser {
     let user: string = sessionStorage.getItem(LoginService.SESSION_STORAGE_KEY);
     if (!user) {
       throw new Error("no token set , authentication required");
@@ -73,4 +72,4 @@ export class LoginService {
   private signInErrorHandler(err) {
     console.warn(err);
   }
-}  
+} 
