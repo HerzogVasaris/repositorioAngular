@@ -43,7 +43,8 @@ export class NuevoCorreoComponent implements OnInit {
 
         let correo = this.nuevoCorreo.value;
         correo.leido= false;
-        correo.emisor= 'correoEmisor1@openWebinar.inv';
+        correo.emisor= this.nuevoCorreo.value['destinatario'];
+        
 
         
         this.onReset();

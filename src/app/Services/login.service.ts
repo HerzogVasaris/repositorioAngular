@@ -12,6 +12,8 @@ export class LoginService {
   profile: any = undefined;
   tokenUser: string;
   userId: string;
+  userName: string;
+  userEmail: string;
   user: GoogleUser;
 
   constructor(public googleAuthService: GoogleAuthService, private ngZone: NgZone) { 
@@ -21,9 +23,13 @@ export class LoginService {
   }
 
   private setUser(user: any){
-    this.profile = user['w3'];
-    this.tokenUser = user['Zi'];
-    this.userId = user['Eea'];
+     this.profile = user['Fs']
+    // this.tokenUser = user['Zi'];
+    // this.userId = user['Eea'];
+    this.userName = this.profile['sd'];
+    this.userEmail = this.profile['lt'];
+    console.log(this.userName);
+    console.log(this.userEmail);
   }
 
   public getSessionUser(): GoogleUser {
