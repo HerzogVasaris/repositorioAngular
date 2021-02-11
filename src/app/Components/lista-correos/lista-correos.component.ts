@@ -21,7 +21,7 @@ export class ListaCorreosComponent implements OnInit {
   }
 
   clickResponder(correo){
-    correo.responder = false;
+    correo.responder = !correo.responder;
   }
 
   getRecibidos(){
