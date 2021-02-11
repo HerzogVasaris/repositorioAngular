@@ -10,11 +10,13 @@ export class LoginService {
   public static readonly SESSION_STORAGE_KEY: string = "accessToken";
 
   profile: any = undefined;
+  profile2: any = undefined;
   tokenUser: string;
   userId: string;
   userName: string;
   userEmail: string;
   user: GoogleUser;
+  
 
   constructor(public googleAuthService: GoogleAuthService, private ngZone: NgZone) { 
     if(this.isUserSignedIn()){
@@ -24,10 +26,17 @@ export class LoginService {
 
   private setUser(user: any){
      this.profile = user['Fs']
-    // this.tokenUser = user['Zi'];
+     this.profile2 = user['uc'];
+     
+    //this.tokenUser = user['Zi'];
     // this.userId = user['Eea'];
+    this.userId = this.profile['KR'];
     this.userName = this.profile['sd'];
     this.userEmail = this.profile['lt'];
+    this.tokenUser = this.profile2['access_token']
+
+    console.log(user);
+    console.log(this.userId);
     console.log(this.userName);
     console.log(this.userEmail);
   }

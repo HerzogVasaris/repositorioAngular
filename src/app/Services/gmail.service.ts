@@ -7,10 +7,11 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 })
 export class GmailService {
 
+  
   constructor(private http: HttpClient, private login: LoginService) { }
 
   public getRecibidos = function () {
-    const url = "https://www.googleapis.com/gmail/v1/users/"+this.login.userId+"/messages?";
+    const url = "https://www.googleapis.com/gmail/v1/users/"+this.login.userEmail+"/messages?";
     const authToken = this.login.tokenUser;
     let headers = new HttpHeaders({ Authorization: `Bearer ${authToken}`});
     return this.http.get(url, { headers } );

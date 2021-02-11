@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GmailService} from 'src/app/Services/gmail.service';
 
 @Component({
   selector: 'app-lista-correos',
@@ -11,53 +12,29 @@ export class ListaCorreosComponent implements OnInit {
   responder: boolean;
   correoAResponder: any;
 
-  constructor() { 
-    const correo1 = {
-      titulo: "Titulo del 1",
-      cuerpo: `Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email
-        Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email,
-        Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email`,
-      emisor: 'correoEmisor1@openWebinar.inv',
-      destinatario: 'correoReceptor@openWebinar.inv',
-      leido: true,
-    };
-    const correo2 = {
-      titulo: "Titulo del 2",
-      cuerpo: `Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email
-        Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuer`,
-      emisor: 'correoEmisor2@openWebinar.inv',
-      destinatario: 'correoReceptor@openWebinar.inv',
-      leido: false,
-    };
-    this.correos = [];
-    this.correos.push(correo1);
-    this.correos.push(correo2);
-    this.correos.push({
-      titulo: "Titulo del 3",
-      cuerpo: `Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email
-        Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuer`,
-      emisor: 'correoEmisor3@openWebinar.inv',
-      destinatario: 'correoReceptor@openWebinar.inv',
-      leido: false,
-    });
-    this.correos.push({
-      titulo: "Titulo del 4",
-      cuerpo: `Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email
-        Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuerpo del Email, Cuer`,
-      emisor: 'correoEmisor4@openWebinar.inv',
-      destinatario: 'correoReceptor@openWebinar.inv',
-      leido: false,
-    });
-
-    this.responder = false;
+  constructor(private gmail: GmailService) { 
+    this.correos=[];
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    console.log(this.getRecibidos());
   }
 
   clickResponder(correo){
-    
-    correo.responder = !correo.responder;
+    correo.responder = false;
+  }
+
+  getRecibidos(){
+    this.gmail.getRecibidos().subscribe(
+      (response) => {
+        const mensajes = response.messages;
+        console.log("LISTA RECIBIDOS: ", mensajes);
+      },
+      (error) => this.error(error),
+    );
+  }
+  error(error){
+    console.warn("ERROR");
   }
 
   accionRespuestaRapida(correo){
